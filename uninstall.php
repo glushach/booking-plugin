@@ -11,7 +11,7 @@ if(!defined('WP_UNINSTALL_PLUGIN')) {
 
 // remove meta
 
-// remove taxt/terms
+// remove tax/terms
 
 // remove commets
 

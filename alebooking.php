@@ -19,12 +19,22 @@ if(!defined('ABSPATH')) {
 
 class AleBooking
 {
-  function __construct()
+  public function __construct()
   {
     add_action('init', [$this,'custom_post_type']);
   }
 
-  function custom_post_type() {
+  static function activation() {
+    // update rewrite rules
+    flash_rewrite_rules();
+  }
+
+  static function deactivation() {
+    // update rewrite rules
+    flash_rewrite_rules();
+  }
+
+  public function custom_post_type() {
     register_post_type('room', 
       [
         'public' => true,
@@ -36,5 +46,8 @@ class AleBooking
 }
 
 if(class_exists('AleBooking')) {
-  new AleBooking();
+  $aleBooking = new AleBooking();
 }
+
+register_activation_hook(__FILE__, array($aleBooking, 'activation'));
+register_deactivation_hook(__FILE__, array($aleBooking, 'deactivation'));
